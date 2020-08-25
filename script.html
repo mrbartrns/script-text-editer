@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script</title>
+    <link rel="stylesheet" href="./script.css">
+</head>
+<body>
+    <h1>script</h1>
+    <button type="button" class="button dialog mode selected" data-type="dialog">dialog</button>
+    <button type="button" class="button sfx mode" data-type="sfx">sfx</button>
+    <div class="container">
+        <div class="row">
+            <input type="checkbox" value="selected">
+        </div>
+        <form class="script-form">
+            <textarea class="script" rows="30" cols="100" placeholder="Write Something!" spellcheck="false"></textarea>
+        </form>
+    </div>
+    <button type="button" class="script-submit">Submit</button>
+    <button type="button" class="delete">Delete All</button>
+    <div class="showing">
+        <p></p>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

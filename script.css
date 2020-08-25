@@ -1,0 +1,27 @@
+textarea {
+    font-family: 'Malgun Gothic';
+    resize: none;
+    outline: none;
+}
+
+button {
+    border: none;
+    background: none;
+    outline: none;
+    color: steelblue;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: steelblue;
+    color: white;
+}
+.selected {
+    background-color: steelblue;
+    color: white;
+}
+
+.row {
+    float: left;
+}

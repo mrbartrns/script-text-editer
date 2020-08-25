@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea rows="30" cols="100"></textarea>
+    <button type="button">delete</button>
+    <script>
+        const txtarea = document.querySelector("textarea");
+        const delBtn = document.querySelector("button");
+        txtarea.addEventListener("click", handleClick);
+        function handleClick() {
+            const a = getRow(txtarea);
+            console.log(a);
+        }
+    function getRow(textarea) {
+        const txts = textarea.value;
+        const strings = txts.split("\n");
+        const cursorPoint = textarea.selectionStart;
+        let lineStart = 0;
+        for (let i = 0; i < strings.length; i++) {
+            let lineEnd = lineStart + strings[i].length + 1;
+            if (lineStart <= cursorPoint && cursorPoint < lineEnd) {
+                return(i + 1);
+            } else {
+                lineStart = lineEnd;
+            }
+        }
+    }
+    const testobjects = [{row: 1, text: 'hi'}, {row: 2, text: 'my'}, {row: 3, text: 'name'}, {row: 4, text: 'is'}]
+    localStorage.setItem('test', JSON.stringify(testobjects));
+    const value = localStorage.getItem('test');
+    const parsed = JSON.parse(value);
+    let text = [];
+    for (let i = 0; i < parsed.length; i++) {
+        text.push(parsed[i].text);
+    }
+    txtarea.textContent = text.join('\n');
+    delBtn.addEventListener("click", () => {
+        txtarea.textContent = "";
+    })
+
+    </script>
+</body>
+</html>
