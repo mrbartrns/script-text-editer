@@ -10,6 +10,7 @@ const BACKSPACE = 8;
 const UP_ARROW_KEY = 38;
 const DOWN_ARROW_KEY = 40;
 const SELECTED = "selected";
+const SCR_LS = "savedScripts";
 const action = document.querySelector(`.${SELECTED}`).dataset.type;
 
 let dialogObjects = [];
@@ -112,7 +113,7 @@ function deleteAll() {
     // delete localStorage and textContent on the txtarea
     // textarea is in the form so must use value, not textContent
     scriptInput.value = "";
-    localStorage.removeItem("savedScripts");
+    localStorage.removeItem(SCR_LS);
     const action = document.querySelector(`.${SELECTED}`).dataset.type;
     const dialogObject = new Dialog(action);
     dialogObjects = [];
@@ -125,7 +126,7 @@ function saveScripts() {
     // const lastString = strings[strings.length -1]
     // dialogObjects[dialogObjects.length - 1].setScript(lastString);
     refreshDialogs(strings);
-    localStorage.setItem("savedScripts", JSON.stringify(dialogObjects));
+    localStorage.setItem(SCR_LS, JSON.stringify(dialogObjects));
     console.log("done");
 }
 
@@ -201,7 +202,7 @@ function init() {
     // if objlist in localstorage;, get text from localStorages' object >>JSON.parse something
     // loadScripts();
     // else
-    const parsedDialogObjects = JSON.parse(localStorage.getItem("savedScripts"));
+    const parsedDialogObjects = JSON.parse(localStorage.getItem(SCR_LS));
     if (parsedDialogObjects !== null) {
         loadScripts(parsedDialogObjects);
     } else {
