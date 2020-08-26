@@ -240,6 +240,15 @@ function init() {
         getType(row);
     });
 
+    scriptInput.addEventListener("dragend", function() {
+        const strings = getTextArr();
+        refreshDialogs(strings);
+        dialogObjects = dialogObjects.filter(object => {
+            return object.script !== undefined;
+        });
+        console.log(dialogObjects);
+    });
+
     submitBtn.addEventListener("click", function() {
         saveScripts(); 
     });

@@ -30,17 +30,9 @@
             }
         }
     }
-    const testobjects = [{row: 1, text: 'hi'}, {row: 2, text: 'my'}, {row: 3, text: 'name'}, {row: 4, text: 'is'}]
-    localStorage.setItem('test', JSON.stringify(testobjects));
-    const value = localStorage.getItem('test');
-    const parsed = JSON.parse(value);
-    let text = [];
-    for (let i = 0; i < parsed.length; i++) {
-        text.push(parsed[i].text);
-    }
-    txtarea.textContent = text.join('\n');
-    delBtn.addEventListener("click", () => {
-        txtarea.textContent = "";
+
+    txtarea.addEventListener('dragend', function() {
+        console.log("dragend");
     })
 
     </script>
