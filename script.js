@@ -14,10 +14,11 @@ const SCR_LS = "savedScripts";
 const action = document.querySelector(`.${SELECTED}`).dataset.type;
 
 let dialogObjects = [];
-// let stringsLength = 0;
+// let stringsLength = 1;
 let currentLine = 1;
 // END OF GLOBAL SCOPE'S VARIABLES
 
+/*
 function Dialog(action) {
     // this.row = dialogObjects.length + 1;
     this.row = 0;
@@ -48,11 +49,12 @@ Dialog.prototype.setAction = function(action) {
 Dialog.prototype.setScript = function(text) {
     this.script = text;
 }
+*/
 // END OF OBJECTS
 
 function getType(row) {
     // 줄을 바탕으로 버튼에 어떤 action인지 표시한다.
-    const currentAction = dialogObjects[row - 1].getAction();
+    const currentAction = dialogObjects[row - 1]['action'];
     console.log(currentAction);
     modes[0].classList.remove(SELECTED);
     modes[1].classList.remove(SELECTED);
@@ -65,8 +67,8 @@ function getType(row) {
 
 function refreshDialogs(strings) {
     dialogObjects.forEach((object, index) => {
-        object.setScript(strings[index]);
-        object.setRow(index + 1);
+        object['script'] = strings[index];
+        object['row'] = index + 1;
     })
 }
 
@@ -110,32 +112,10 @@ function getDraggedRows(textarea, rowStart) {
 }
 
 function exportData() {
-    /*
-    mydata = {
-        1: {
-            action:,
-            scripts:{
-                person:,
-                saying:[]
-            }
-        },
-        2: {
-            action:,
-            scripts:...
-        }
-    }
-    */
    const strings = getTextArr();
    refreshDialogs(strings);
-//    let myData = {}
-//    for(let i = 0; i < dialogObjects.length; i++) {
-//        myData[dialogObjects[i].row] = {};
-//        myData[dialogObjects[i].row]['action'] = dialogObjects[i].action;
-//        myData[dialogObjects[i].row]['script'] = dialogObjects[i].script;
-//    }
-//    return myData;
     const data = dialogObjects;
-    const fileName = 'download';
+    const fileName = 'your_scripts';
     const exportType = 'json';
     exportFromJSON({data, fileName, exportType});
 }
@@ -146,7 +126,11 @@ function deleteAll() {
     scriptInput.value = "";
     localStorage.removeItem(SCR_LS);
     const action = document.querySelector(`.${SELECTED}`).dataset.type;
-    const dialogObject = new Dialog(action);
+    const dialogObject = {
+        row: 1,
+        action: action,
+        script: ""
+    };
     dialogObjects = [];
     dialogObjects.push(dialogObject);
     console.log(dialogObjects);
@@ -166,13 +150,14 @@ function loadScripts(parsed) {
     for (let i = 0; i < parsed.length; i++) {
         const text = parsed[i].script;
         texts.push(text);
-        const dialogObject = new Dialog(parsed[i].action);
-        dialogObjects.splice(i, 0, dialogObject);
+        // const dialogObject = new Dialog(parsed[i].action);
+        // dialogObjects.splice(i, 0, dialogObject);
     }
+    dialogObjects = parsed;
     console.log(dialogObjects);
     refreshDialogs(texts);
     // paint on the textarea
-    scriptInput.textContent = texts.join('\n');
+    scriptInput.value = texts.join('\n');
 }
 
 function handleEnter() {
@@ -182,7 +167,12 @@ function handleEnter() {
     const row = getRow(scriptInput);
     // CONST DIALOGOBJECT SHOULD BE IN FOR LOOP
     for (let i = currentLine; i < row; i++) {
-        const dialogObject = new Dialog(action);
+        // const dialogObject = new Dialog(action);
+        const dialogObject = {
+            row: 0,
+            action: action,
+            script: ""
+        }
         dialogObjects.splice(i, 0, dialogObject);
         console.log(dialogObjects);
     }
@@ -190,23 +180,25 @@ function handleEnter() {
     refreshDialogs(strings);
     // stringsLength = strings.length;
     currentLine = row;
+    stringsLength = strings.length;
 }
 
-// backspace를 누르고 있을때, 마지막 것이 undefined 처리되는 버그가 존재 > 수정할것 > 수정완료
+// todo: backspace를 누르지 않고 drag하여 문자를 수정할 경우에 대해 
 function handleBackSpace() {
     const strings = getTextArr();
     const row = getRow(scriptInput);
-    // let currentLength = strings.length;
-    // let lengths = stringsLength - currentLength;
-    if (currentLine !== row) {
-        dialogObjects.splice(row, currentLine - row);
-        refreshDialogs(strings);
-        console.log(dialogObjects);
+    const currentLength = strings.length;
+    const objectsLength = dialogObjects.length;
+    if (objectsLength !== currentLength) {
+            dialogObjects.splice(row, objectsLength - currentLength);
+            refreshDialogs(strings);
+            console.log(dialogObjects);
     } else {
-        dialogObjects[row - 1].setScript(strings[row - 1]);
+        dialogObjects[row - 1]['script'] = strings[row - 1];
         console.log(dialogObjects);
     }
     currentLine = row;
+    // stringsLength = currentLength;
 }
 
 // todo: modify setUpMode when I select row showing action
@@ -220,11 +212,11 @@ function setUpMode() {
     if (scriptInput.selectionStart !== scriptInput.selectionEnd) {
         const draggedLines = getDraggedRows(scriptInput, row);
         for (let i = row - 1; i < row - 1 + draggedLines; i++) {
-            dialogObjects[i].setAction(action);
+            dialogObjects[i]['action'] = action;
         }
     } else {
         //드래그 안했을때
-        dialogObjects[row - 1].setAction(action);
+        dialogObjects[row - 1]['action'] = action;
     }
     console.log(dialogObjects);
 }
@@ -238,7 +230,12 @@ function init() {
         loadScripts(parsedDialogObjects);
     } else {
         console.log('no parsed dialog objects');
-        const dialogObject = new Dialog(action);
+        // const dialogObject = new Dialog(action);
+        const dialogObject = {
+            row: 1,
+            action: action,
+            script: ""
+        }
         dialogObjects.push(dialogObject);
     }
     
@@ -261,13 +258,22 @@ function init() {
                 currentLine += 1;
                 console.log(currentLine);
             }
+        } else {
+            const strings = getTextArr();
+            const stringsLength = strings.length;
+            if (stringsLength !== dialogObjects.length) {
+                const row = getRow(scriptInput);
+                dialogObjects.splice(row, dialogObjects.length - stringsLength);
+                refreshDialogs(strings);
+                console.log(dialogObjects);
+            }
         }
     });
 
-    //toDo: scriptInput.addEventListener("click", handleClick);
     scriptInput.addEventListener("click", function() {
         const row = getRow(scriptInput);
         currentLine = row;
+        dragged = getDraggedRows(scriptInput, currentLine);
         console.log(row);
         getType(row);
     });
@@ -295,6 +301,3 @@ function init() {
 }
 
 init();
-
-// todo: make possible with a drag
-// todo: handle checkbox. whenever number of lines get bigger, check box will be added number of lines
