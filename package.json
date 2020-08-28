@@ -1,0 +1,23 @@
+{
+  "name": "script-text-editor",
+  "version": "1.0.0",
+  "description": "drag시 객체가 undefined 되는 문제 수정",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrbartrns/script-text-editer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrbartrns/script-text-editer/issues"
+  },
+  "homepage": "https://github.com/mrbartrns/script-text-editer#readme",
+  "dependencies": {
+    "export-from-json": "^1.3.3"
+  }
+}

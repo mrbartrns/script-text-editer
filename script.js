@@ -5,6 +5,7 @@ const showingP = showing.querySelector("p");
 const modes = document.querySelectorAll(".mode");
 const submitBtn = document.querySelector(".script-submit");
 const delBtn = document.querySelector(".delete");
+const exportBtn = document.querySelector(".export");
 const ENTER = 13;
 const BACKSPACE = 8;
 const UP_ARROW_KEY = 38;
@@ -107,6 +108,33 @@ function getDraggedRows(textarea, rowStart) {
             lineStart = lineEnd;
         }
     }
+}
+
+function exportData() {
+    /*
+    mydata = {
+        1: {
+            action:,
+            scripts:{
+                person:,
+                saying:[]
+            }
+        },
+        2: {
+            action:,
+            scripts:...
+        }
+    }
+    */
+   const strings = getTextArr();
+   refreshDialogs(strings);
+   let myData = {}
+   for(let i = 0; i < dialogObjects.length; i++) {
+       myData[dialogObjects[i].row] = {};
+       myData[dialogObjects[i].row]['action'] = dialogObjects[i].action;
+       myData[dialogObjects[i].row]['script'] = dialogObjects[i].script;
+   }
+   return myData;
 }
 
 function deleteAll() {
@@ -256,6 +284,11 @@ function init() {
 
     delBtn.addEventListener("click", () => {
         deleteAll();
+    });
+
+    exportBtn.addEventListener("click", () => {
+        const exportedData = exportData();
+        console.log(exportedData);
     })
 }
 
