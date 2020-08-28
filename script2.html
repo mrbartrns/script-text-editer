@@ -36,5 +36,13 @@
     })
 
     </script>
+    <script src="https://unpkg.com/export-from-json/dist/umd/index.min.js"></script>
+    <script>
+        const data = [{ foo: 'foo'}, { bar: 'bar' }]
+        const fileName = 'download'
+        const exportType = 'json'
+    
+        window.exportFromJSON({ data, fileName, exportType })
+    </script>
 </body>
 </html>

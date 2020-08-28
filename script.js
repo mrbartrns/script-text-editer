@@ -1,4 +1,3 @@
-// strings arr랑 objarr랑 갯수를 맞추기
 const scriptInput = document.querySelector(".script");
 const showing = document.querySelector(".showing");
 const showingP = showing.querySelector("p");
@@ -128,13 +127,17 @@ function exportData() {
     */
    const strings = getTextArr();
    refreshDialogs(strings);
-   let myData = {}
-   for(let i = 0; i < dialogObjects.length; i++) {
-       myData[dialogObjects[i].row] = {};
-       myData[dialogObjects[i].row]['action'] = dialogObjects[i].action;
-       myData[dialogObjects[i].row]['script'] = dialogObjects[i].script;
-   }
-   return myData;
+//    let myData = {}
+//    for(let i = 0; i < dialogObjects.length; i++) {
+//        myData[dialogObjects[i].row] = {};
+//        myData[dialogObjects[i].row]['action'] = dialogObjects[i].action;
+//        myData[dialogObjects[i].row]['script'] = dialogObjects[i].script;
+//    }
+//    return myData;
+    const data = dialogObjects;
+    const fileName = 'download';
+    const exportType = 'json';
+    exportFromJSON({data, fileName, exportType});
 }
 
 function deleteAll() {
@@ -287,8 +290,7 @@ function init() {
     });
 
     exportBtn.addEventListener("click", () => {
-        const exportedData = exportData();
-        console.log(exportedData);
+        exportData();
     })
 }
 
