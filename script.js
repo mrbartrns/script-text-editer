@@ -14,8 +14,10 @@ const SCR_LS = "savedScripts";
 const action = document.querySelector(`.${SELECTED}`).dataset.type;
 
 let dialogObjects = [];
-// let stringsLength = 1;
 let currentLine = 1;
+
+// boolean
+let isSaveSuccessed = false; 
 // END OF GLOBAL SCOPE'S VARIABLES
 
 /*
@@ -143,6 +145,7 @@ function saveScripts() {
     refreshDialogs(strings);
     localStorage.setItem(SCR_LS, JSON.stringify(dialogObjects));
     console.log("done");
+    isSaveSuccessed = true;
 }
 
 function loadScripts(parsed) {
