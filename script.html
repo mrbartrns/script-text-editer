@@ -4,27 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Script</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./script.css">
 </head>
 <body>
-    <h1>script</h1>
-    <button type="button" class="button dialog mode selected" data-type="dialog">dialog</button>
-    <button type="button" class="button sfx mode" data-type="sfx">sfx</button>
-    <div class="container">
+    <div class="alert alert-success fixed-top" role="alert">
+        saved successfully!
+        <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <nav class="navbar navbar-dark navbar-expand-lg">
+        <a class="navbar-brand" href="#">Script Editor</a>
+    </nav>
+    <div class="container-sm py-2">
+        <button type="button" class="button dialog mode selected btn" data-type="dialog">dialog</button>
+        <button type="button" class="button sfx mode btn" data-type="sfx">sfx</button>
+    </div>
+    <div class="container-sm">
         <div class="row">
             <input type="checkbox" value="selected">
         </div>
         <form class="script-form">
-            <textarea class="script" rows="30" cols="100" placeholder="Write Something!" spellcheck="false"></textarea>
+            <div class="form-group">
+                <textarea class="script fomr-control" rows="30" cols="100" placeholder="Write Something!" spellcheck="false"></textarea>
+            </div>
         </form>
     </div>
-    <button type="button" class="script-submit">Submit</button>
-    <button type="button" class="delete">Delete All</button>
-    <button type="button" class="export">Export</button>
-    <div class="showing">
-        <p></p>
+    <div class="container-sm py-2">
+        <button type="button" class="script-submit btn">Submit</button>
+        <button type="button" class="delete btn">Delete All</button>
+        <button type="button" class="export btn export">Export</button>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
+    <script src="./style.js"></script>
     <script src="https://unpkg.com/export-from-json/dist/umd/index.min.js"></script>
 </body>
 </html>

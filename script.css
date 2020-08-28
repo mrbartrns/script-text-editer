@@ -1,10 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar-dark {
+    background-color: #9ad5ca;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
 textarea {
     font-family: 'Malgun Gothic';
     resize: none;
     outline: none;
 }
 
-button {
+/* button {
     border: none;
     background: none;
     outline: none;
@@ -16,12 +31,29 @@ button {
 button:hover {
     background-color: steelblue;
     color: white;
+} */
+
+.alert {
+    transform: translateY(-100%);
+    transition: transform 0.5s;
+    z-index: 2;
 }
+
+.btn {
+    background-color: #acdde7;
+    color: white;
+}
+
 .selected {
-    background-color: steelblue;
+    background-color: #adb9e3;
     color: white;
 }
 
 .row {
     float: left;
+}
+
+.alert-active {
+    transform: translateY(0%);
+    transition: transform 0.5s;
 }

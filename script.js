@@ -1,6 +1,6 @@
 const scriptInput = document.querySelector(".script");
-const showing = document.querySelector(".showing");
-const showingP = showing.querySelector("p");
+// const showing = document.querySelector(".showing");
+// const showingP = showing.querySelector("p");
 const modes = document.querySelectorAll(".mode");
 const submitBtn = document.querySelector(".script-submit");
 const delBtn = document.querySelector(".delete");
