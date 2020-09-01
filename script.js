@@ -269,6 +269,7 @@ function init() {
                 dialogObjects.splice(row, dialogObjects.length - stringsLength);
                 refreshDialogs(strings);
                 console.log(dialogObjects);
+                currentLine = row;
             }
         }
     });
