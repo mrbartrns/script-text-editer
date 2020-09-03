@@ -6,6 +6,7 @@
     <title>Script</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./script.css">
+    <link rel="stylesheet" href="../modules/highlight-within-textarea-master/jquery.highlight-within-textarea.css">
 </head>
 <body>
     <div class="alert alert-success fixed-top" role="alert">
@@ -25,11 +26,15 @@
         <div class="row">
             <input type="checkbox" value="selected">
         </div>
-        <form class="script-form">
-            <div class="form-group">
-                <textarea class="script fomr-control" rows="30" cols="100" placeholder="Write Something!" spellcheck="false"></textarea>
+        <div class="container-">
+            <div class="backdrop">
             </div>
-        </form>
+            <form class="script-form">
+                <div class="form-group">
+                    <textarea class="script form-control" rows="30" cols="100" placeholder="Write Something!" spellcheck="false"></textarea>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="container-sm py-2">
         <button type="button" class="script-submit btn">Submit</button>
@@ -43,5 +48,11 @@
     <script src="./script.js"></script>
     <script src="./style.js"></script>
     <script src="https://unpkg.com/export-from-json/dist/umd/index.min.js"></script>
+    <script src="../modules/highlight-within-textarea-master/jquery.highlight-within-textarea.js"></script>
+    <script>
+        $('.script').highlightWithinTextarea({
+            highlight: 'people'
+        });
+    </script>
 </body>
 </html>

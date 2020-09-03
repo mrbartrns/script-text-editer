@@ -4,38 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="modules/highlight-within-textarea-master/jquery.highlight-within-textarea.css">
 </head>
 <body>
-    <textarea rows="30" cols="100"></textarea>
+    <style>
+    </style>
+    <textarea rows="30" cols="100" id="txtarea"></textarea>
     <button type="button">delete</button>
+    <!-- <script src="script2.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="modules/highlight-within-textarea-master/jquery.highlight-within-textarea.js"></script>
     <script>
-        const txtarea = document.querySelector("textarea");
-        const delBtn = document.querySelector("button");
-        txtarea.addEventListener("click", handleClick);
-        function handleClick() {
-            const a = getRow(txtarea);
-            console.log(a);
-        }
-    function getRow(textarea) {
-        const txts = textarea.value;
-        const strings = txts.split("\n");
-        const cursorPoint = textarea.selectionStart;
-        let lineStart = 0;
-        for (let i = 0; i < strings.length; i++) {
-            let lineEnd = lineStart + strings[i].length + 1;
-            if (lineStart <= cursorPoint && cursorPoint < lineEnd) {
-                return(i + 1);
-            } else {
-                lineStart = lineEnd;
-            }
-        }
-    }
-
-    txtarea.addEventListener('dragend', function() {
-        console.log("dragend");
-    })
-
+        $('textarea').highlightWithinTextarea({
+            highlight: 'people',
+            className: 'purple'
+        });
     </script>
-    <script src="script2.js"></script>
 </body>
 </html>

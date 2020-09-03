@@ -305,3 +305,5 @@ function init() {
 }
 
 init();
+
+// todo: addEventlistener input and showing how will it be saved

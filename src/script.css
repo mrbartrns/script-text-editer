@@ -17,6 +17,8 @@ textarea {
     font-family: 'Malgun Gothic';
     resize: none;
     outline: none;
+    margin: 0;
+    border-radius: 0;
 }
 
 /* button {
@@ -56,4 +58,26 @@ button:hover {
 .alert-active {
     transform: translateY(0%);
     transition: transform 0.5s;
+}
+
+.backdrop {
+    overflow: auto;
+}
+
+.highlights {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.highlights {
+    color: transparent;
+}
+
+mark {
+    color: transparent;
+    background-color: #d4e9ab; /* or whatever */
+}
+
+.backdrop {
+    background-color: #fff; /* or whatever */
 }

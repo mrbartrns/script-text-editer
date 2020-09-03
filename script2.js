@@ -1,6 +1,6 @@
 const scriptInput = document.querySelector(".script");
 const showing = document.querySelector(".showing");
-const showingP = showing.querySelector("p");
+// const showingP = showing.querySelector("p");
 const modes = document.querySelectorAll(".mode");
 const submitBtn = document.querySelector(".script-submit");
 const delBtn = document.querySelector(".delete");
@@ -11,7 +11,7 @@ const UP_ARROW_KEY = 38;
 const DOWN_ARROW_KEY = 40;
 const SELECTED = "selected";
 const SCR_LS = "savedScripts";
-const action = document.querySelector(`.${SELECTED}`).dataset.type;
+// const action = document.querySelector(`.${SELECTED}`).dataset.type;
 
 let dialogObjects = [];
 let stringsLength = 1;
